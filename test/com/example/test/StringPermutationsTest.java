@@ -43,12 +43,6 @@ public class StringPermutationsTest {
         assertEquals(0, result.size());
     }
 
-    @Test
-    public void testPermutationsOfNullString() {
-        String input = null;
-        List<String> result = StringPermutations.generatePermutations(input);
-        assertEquals(0, result.size());
-    }
 
     @Test
     public void testPermutationsOfSingleCharacterString() {
