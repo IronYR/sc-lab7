@@ -30,6 +30,37 @@ public class StringPermutations {
             }
         }
     }
+    public static List<String> generatePermutationsIterative(String str) {
+        List<String> result = new ArrayList<>();
+        if (str == null || str.isEmpty()) {
+            return result;  // Return empty list for null or empty input
+        }
+
+        char[] chars = str.toCharArray();
+        int n = chars.length;
+        int[] c = new int[n];  // Control array for Heap's Algorithm
+
+        // Add the first permutation (initial order of chars)
+        result.add(new String(chars));
+
+        int i = 0;
+        while (i < n) {
+            if (c[i] < i) {
+                if (i % 2 == 0) {
+                    swap(chars, 0, i);  // Swap first and i-th element
+                } else {
+                    swap(chars, c[i], i);  // Swap c[i] and i-th element
+                }
+                result.add(new String(chars));  // Add the current permutation
+                c[i] += 1;
+                i = 0;
+            } else {
+                c[i] = 0;
+                i += 1;
+            }
+        }
+        return result;
+    }
 
     // Utility method to swap characters at two positions in the char array
     private static void swap(char[] chars, int i, int j) {
